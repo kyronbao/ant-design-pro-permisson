@@ -165,6 +165,20 @@ class TableListSimple2 extends PureComponent {
     });
   };
 
+  deleteItem = (dispatch, selectedRows) => {
+    dispatch({
+      type: 'rule/remove',
+      payload: {
+        key: selectedRows.map(row => row.key),
+      },
+      callback: () => {
+        this.setState({
+          selectedRows: [],
+        });
+      },
+    });
+  }
+
   handleMenuClick = e => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
@@ -172,16 +186,12 @@ class TableListSimple2 extends PureComponent {
     if (selectedRows.length === 0) return;
     switch (e.key) {
       case 'remove':
-        dispatch({
-          type: 'rule/remove',
-          payload: {
-            key: selectedRows.map(row => row.key),
-          },
-          callback: () => {
-            this.setState({
-              selectedRows: [],
-            });
-          },
+        Modal.confirm({
+          title: '删除任务',
+          content: '确定删除该任务吗？',
+          okText: '确认',
+          cancelText: '取消',
+          onOk: () => this.deleteItem(dispatch, selectedRows),
         });
         break;
       default:
