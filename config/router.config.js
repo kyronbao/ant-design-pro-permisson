@@ -105,6 +105,16 @@ export default [
             component: './List/TableList',
           },
           {
+            path: '/list/table-list-simple1',
+            name: 'searchtablesimple1',
+            component: './List/TableListSimple1',  //搜索不展开
+          },
+          {
+            path: '/list/table-list-simple2',
+            name: 'searchtablesimple2',
+            component: './List/TableListSimple2',  //搜索不展开，新建和编辑复用modal
+          },
+          {
             path: '/list/basic-list',
             name: 'basiclist',
             component: './List/BasicList',
