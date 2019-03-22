@@ -70,12 +70,12 @@ export default {
       "locale": "menu.list.searchtable"
     }, {
       "path": "/list/table-list-simple1",
-      "name": "searchtablesimple1",
+      "name": "查询表格简版1",
       "exact": true,
       "locale": "menu.list.searchtablesimple1"
     }, {
       "path": "/list/table-list-simple2",
-      "name": "searchtablesimple2",
+      "name": "查询表格简版2",
       "exact": true,
       "locale": "menu.list.searchtablesimple2"
     }, {
