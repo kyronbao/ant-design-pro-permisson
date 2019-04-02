@@ -20,7 +20,18 @@ export default {
       "exact": true,
       "locale": "menu.dashboard.workplace"
     }]
-  }, {
+  },
+    {
+      "path": "/",
+      "icon": "form",
+      "name": "权限管理",
+      "locale": "menu.form",
+      "children": [{
+        "path": "/admin/auth/roles",
+        "name": "角色管理",
+      }]
+    },
+    {
     "path": "/form",
     "icon": "form",
     "name": "表单页",

@@ -153,6 +153,19 @@ export default [
         ],
       },
       {
+        path: '/',
+        icon: 'table',
+        name: 'auth',
+        routes: [
+          {
+            path: 'admin/auth/roles',
+            name: 'roles',
+            component: './Auth/Roles',
+          },
+
+        ],
+      },
+      {
         path: '/profile',
         name: 'profile',
         icon: 'profile',
