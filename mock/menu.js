@@ -35,6 +35,9 @@ export default {
       },{
         "path": "/admin/auth/menus",
         "name": "菜单管理",
+      },{
+        "path": "/admin/auth/stuffs",
+        "name": "员工管理",
       }]
     },
     {

@@ -172,7 +172,11 @@ export default [
             name: 'menus',
             component: './Auth/Menus',
           },
-
+          {
+            path: 'admin/auth/stuffs',
+            name: 'stuffs',
+            component: './Auth/Stuffs',
+          },
         ],
       },
       {

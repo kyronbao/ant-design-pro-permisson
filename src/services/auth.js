@@ -32,3 +32,19 @@ export async function postPermissions(params) {
   );
 }
 
+export async function getStuffs() {
+  return request(`/admin/auth/get-stuffs`);
+}
+
+export async function postStuffs(params) {
+  return request(`/admin/auth/post-stuffs`,
+    {
+      method: 'POST',
+      body: {
+        ...params,
+        method: 'post',
+      },
+    }
+  );
+}
+
