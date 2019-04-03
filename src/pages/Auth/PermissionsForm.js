@@ -57,7 +57,7 @@ class PermissionsForm extends PureComponent {
     const { data } = this.state;
     const newData = data.map(item => ({ ...item }));
     newData.push({
-      id: `NEW_TEMP_ID_${this.index}`,
+      id: `NEW_${this.index}`,
       name: '',
       name_cn: '',
       path: '',
@@ -112,7 +112,7 @@ class PermissionsForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(id) || {};
-      if (!target.name) {
+      if (!target.name || !target.name_cn || !target.path || !target.guard) {
         message.error('请填写完整信息。');
         e.target.focus();
         this.setState({

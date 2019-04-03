@@ -57,7 +57,7 @@ class MenusForm extends PureComponent {
     const { data } = this.state;
     const newData = data.map(item => ({ ...item }));
     newData.push({
-      id: `NEW_TEMP_ID_${this.index}`,
+      id: `NEW_${this.index}`,
       name: '',
       name_cn: '',
       path: '',
@@ -115,7 +115,7 @@ class MenusForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(id) || {};
-      if (!target.name) {
+      if (!target.name || !target.name_cn || !target.path || !target.guard) {
         message.error('请填写完整信息。');
         e.target.focus();
         this.setState({
@@ -249,7 +249,7 @@ class MenusForm extends PureComponent {
       {
         title: '父级',
         dataIndex: 'parent',
-        width: '6%',
+        width: '8%',
         render: (text, record) => {
           if (record.editable) {
             return (
@@ -268,7 +268,7 @@ class MenusForm extends PureComponent {
       {
         title: '排序',
         dataIndex: 'sort',
-        width: '6%',
+        width: '8%',
         render: (text, record) => {
           if (record.editable) {
             return (

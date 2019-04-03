@@ -57,8 +57,8 @@ class StuffsForm extends PureComponent {
     const { data } = this.state;
     const newData = data.map(item => ({ ...item }));
     newData.push({
-      id: `NEW_TEMP_ID_${this.index}`,
-      name: '',
+      id: `NEW_${this.index}`,
+      username: '',
       email: '',
       editable: true,
     });
@@ -110,7 +110,7 @@ class StuffsForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(id) || {};
-      if (!target.name) {
+      if (!target.username || !target.email) {
         message.error('请填写完整信息。');
         e.target.focus();
         this.setState({

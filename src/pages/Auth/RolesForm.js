@@ -57,8 +57,9 @@ class RolesForm extends PureComponent {
     const { data } = this.state;
     const newData = data.map(item => ({ ...item }));
     newData.push({
-      id: `NEW_TEMP_ID_${this.index}`,
+      id: `NEW_${this.index}`,
       name: '',
+      editable: true,
     });
     this.index += 1;
     this.setState({ data: newData });
