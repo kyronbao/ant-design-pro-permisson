@@ -29,6 +29,9 @@ export default {
       "children": [{
         "path": "/admin/auth/roles",
         "name": "角色管理",
+      },{
+        "path": "/admin/auth/permissions",
+        "name": "权限管理",
       }]
     },
     {

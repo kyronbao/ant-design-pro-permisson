@@ -16,3 +16,19 @@ export async function postRoles(params) {
   );
 }
 
+export async function getPermissions() {
+  return request(`/admin/auth/get-permissions`);
+}
+
+export async function postPermissions(params) {
+  return request(`/admin/auth/post-permissions`,
+    {
+      method: 'POST',
+      body: {
+        ...params,
+        method: 'post',
+      },
+    }
+  );
+}
+
