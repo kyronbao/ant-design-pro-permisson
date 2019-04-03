@@ -32,6 +32,9 @@ export default {
       },{
         "path": "/admin/auth/permissions",
         "name": "权限管理",
+      },{
+        "path": "/admin/auth/menus",
+        "name": "菜单管理",
       }]
     },
     {

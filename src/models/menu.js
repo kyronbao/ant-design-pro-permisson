@@ -3,7 +3,9 @@ import isEqual from 'lodash/isEqual';
 import { formatMessage } from 'umi/locale';
 import Authorized from '@/utils/Authorized';
 import { menu } from '../defaultSettings';
-import { getMenuDataReal } from "../services/menu"
+import { getMenuDataReal, getMenus, postMenus } from "../services/menu"
+import { message } from 'antd';
+import { ok } from '@/utils/errors'
 
 const { check } = Authorized;
 
@@ -120,6 +122,24 @@ export default {
         payload: { menuData, breadcrumbNameMap, routerData: routes },
       });
     },
+    *fetch(_, { call, put }) {
+      const response = yield call(getMenus);
+      yield put({
+        type: 'saveMenus',
+        payload: response.data,
+      });
+    },
+
+    *post({ payload }, { call, put }) {
+      const response = yield call(postMenus, payload);
+      if (response.code !== ok) {
+        message.error('提交失败')
+      }
+      yield put({
+        type: 'saveMenus',
+        payload: response.data,
+      });
+    },
   },
 
   reducers: {
@@ -127,6 +147,12 @@ export default {
       return {
         ...state,
         ...action.payload,
+      };
+    },
+    saveMenus(state, action) {
+      return {
+        ...state,
+        menu: action.payload || {},
       };
     },
   },

@@ -44,6 +44,43 @@ const permissionsPlus = permissions.concat({
   guard: 'admin',
 })
 
+
+const menus = [
+  {
+    id: '1',
+    name: 'roles management',
+    path: 'admin/auth/roles',
+    name_cn: '角色管理',
+    icon: "table",
+    parent: 0,
+    sort: 0,
+    guard: 'admin',
+  },
+  {
+    id: '2',
+    name: 'menus management',
+    path: 'admin/auth/menus',
+    icon: "table",
+    parent: 0,
+    sort: 0,
+    name_cn: '权限管理',
+    guard: 'admin',
+  },
+
+];
+
+const menusPlus = menus.concat({
+  id: '3',
+  name: 'stuffs management',
+  path: 'admin/auth/stuffs',
+  name_cn: '员工管理',
+  icon: "table",
+  parent: 0,
+  sort: 0,
+  guard: 'admin',
+})
+
+
 export default {
   '/admin/auth/get-roles': {
     code: 20000,
@@ -60,5 +97,13 @@ export default {
   'POST /admin/auth/post-permissions': {
     code: 20000,
     data: permissionsPlus
+  },
+  '/admin/auth/get-menus': {
+    code: 20000,
+    data: menus,
+  },
+  'POST /admin/auth/post-menus': {
+    code: 20000,
+    data: menusPlus
   },
 };

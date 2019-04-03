@@ -164,8 +164,13 @@ export default [
           },
           {
             path: 'admin/auth/permissions',
-            name: 'roles',
+            name: 'permissions',
             component: './Auth/Permissions',
+          },
+          {
+            path: 'admin/auth/menus',
+            name: 'menus',
+            component: './Auth/Menus',
           },
 
         ],
