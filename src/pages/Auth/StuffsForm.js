@@ -3,6 +3,7 @@ import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
 import isEqual from 'lodash/isEqual';
 import { connect } from 'dva';
 import styles from './style.less';
+import router from 'umi/router';
 
 @connect(({ stuff }) => ({
   stuff
@@ -74,6 +75,13 @@ class StuffsForm extends PureComponent {
       payload: { "stuffs": data },
     });
   };
+
+  editRoles = (id) => {
+    router.replace({
+      pathname: 'stuff-roles',
+      params: {"id": id},
+    })
+  }
 
   remove(id) {
     const { data } = this.state;
@@ -216,6 +224,8 @@ class StuffsForm extends PureComponent {
           return (
             <span>
               <a onClick={e => this.toggleEditable(e, record.id)}>编辑</a>
+              <Divider type="vertical" />
+              <a onClick={e => this.editRoles(record.id)}>角色管理</a>
               <Divider type="vertical" />
               <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.id)}>
                 <a>删除</a>

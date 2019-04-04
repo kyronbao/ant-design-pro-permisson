@@ -106,4 +106,11 @@ export default {
     code: 20000,
     data: menusPlus
   },
+  'GET /admin/auth/get-roles-via-stuff': {
+    code: 20000,
+    data: [{
+      id: '2',
+      name: 'coder',
+    },],
+  },
 };

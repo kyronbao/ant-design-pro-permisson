@@ -11,6 +11,7 @@ export default {
   'menu.auth.roles': '角色管理',
   'menu.auth.permissions': '权限管理',
   'menu.auth.menus': '菜单管理',
+  'menu.auth.stuffs': '员工管理',
   'menu.form': '表单页',
   'menu.form.basicform': '基础表单',
   'menu.form.stepform': '分步表单',

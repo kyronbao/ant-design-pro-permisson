@@ -177,6 +177,11 @@ export default [
             name: 'stuffs',
             component: './Auth/Stuffs',
           },
+          {
+            path: 'admin/auth/stuff-roles',
+            name: 'stuffs',
+            component: './Auth/StuffRoles',
+          },
         ],
       },
       {

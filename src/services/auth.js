@@ -1,4 +1,5 @@
 import request from '@/utils/request';
+import { stringify } from 'qs';
 
 export async function queryRoles() {
   return request(`/admin/auth/get-roles`);
@@ -46,5 +47,9 @@ export async function postStuffs(params) {
       },
     }
   );
+}
+
+export async function getRolesViaStuff(params) {
+  return request(`/admin/auth/get-roles-via-stuff?${stringify(params)}`);
 }
 
