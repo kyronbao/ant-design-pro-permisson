@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Form, Checkbox } from 'antd';
+import { Card, Form, Checkbox, Button } from 'antd';
 
 /* eslint react/no-multi-comp:0 */
 @connect(({ role }) => ({
@@ -23,6 +23,8 @@ class StuffRoles extends PureComponent {
       role: { role },
     } = this.props;
 
+    let currentRoles = [];
+
     const roles = [
       {label:"projector", value:"projector"},
       {label:"coder", value:"coder"},
@@ -30,8 +32,14 @@ class StuffRoles extends PureComponent {
     ];
 
     const CheckboxGroup = Checkbox.Group;
+
     function onChange(checkedValues) {
       console.log('checked = ', checkedValues);
+      currentRoles = checkedValues;
+    }
+
+    function handleSubmit() {
+      console.log(currentRoles)
     }
 
     return (
@@ -39,6 +47,7 @@ class StuffRoles extends PureComponent {
         <Card title="员工角色管理" bordered={false}>
           <CheckboxGroup options={roles} defaultValue={role} onChange={onChange} />
           <br /><br />
+          <Button type="primary" onClick={handleSubmit}>提交</Button>
         </Card>
       </div>
     );
