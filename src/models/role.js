@@ -1,4 +1,4 @@
-import { queryRoles, postRoles, getRolesViaStuff } from '@/services/auth';
+import { queryRoles, postRoles, getRolesViaStuff, postRolesViaStuff } from '@/services/auth';
 import { message } from 'antd';
 import { ok } from '@/utils/errors'
 
@@ -31,19 +31,37 @@ export default {
       });
     },
 
-    *fetchViaStuff({ payload }, { call, put }) {
-      const response = yield call(getRolesViaStuff, payload);
-      if (response.code !== ok) {
+    *fetchViaStuff({ payload }, { call, put, all }) {
+      const [response1, response2] = yield all([
+        call(queryRoles),
+        call(getRolesViaStuff, payload)
+      ]);
+      if (response1.code !== ok) {
         message.error('加载失败')
       }
-      const news =[];
-      response.data.forEach((item) => (
-        news.push(item.name)
+      const roles = [];
+      response1.data.forEach((item) => (
+        roles.push({label:item.name, value:item.name})
+      ));
+      const currentRoles = [];
+      response2.data.forEach((item) => (
+        currentRoles.push(item.name)
       ));
 
       yield put({
         type: 'saveRoles',
-        payload: news,
+        payload: {roles: roles, currentRoles: currentRoles},
+      });
+    },
+
+    *postViaStuff({ payload }, { call, put }) {
+      const response = yield call(postRolesViaStuff, payload);
+      if (response.code !== ok) {
+        message.error('提交失败')
+      }
+      yield put({
+        type: 'saveRoles',
+        payload: response.data,
       });
     },
 },

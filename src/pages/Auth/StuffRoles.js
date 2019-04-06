@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Form, Checkbox, Button } from 'antd';
+import { Card, Form, Checkbox, Button, message } from 'antd';
 
 /* eslint react/no-multi-comp:0 */
 @connect(({ role }) => ({
@@ -12,6 +12,7 @@ class StuffRoles extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     const jsonId = this.props.location.params;
+
     dispatch({
       type: 'role/fetchViaStuff',
       payload: jsonId,
@@ -21,15 +22,11 @@ class StuffRoles extends PureComponent {
   render() {
     const {
       role: { role },
+      location,
+      dispatch,
     } = this.props;
 
     let currentRoles = [];
-
-    const roles = [
-      {label:"projector", value:"projector"},
-      {label:"coder", value:"coder"},
-      {label:"designer", value:"designer"},
-    ];
 
     const CheckboxGroup = Checkbox.Group;
 
@@ -40,15 +37,31 @@ class StuffRoles extends PureComponent {
 
     function handleSubmit() {
       console.log(currentRoles)
+      if(! location.params) {
+        message.error('请从员工页面点击角色管理');
+        return;
+      }
+      dispatch({
+        type: 'role/postViaStuff',
+        payload: {
+          id: location.params.id,
+          current_roles: currentRoles,
+        },
+      });
+
     }
 
     return (
+
       <div>
-        <Card title="员工角色管理" bordered={false}>
-          <CheckboxGroup options={roles} defaultValue={role} onChange={onChange} />
-          <br /><br />
-          <Button type="primary" onClick={handleSubmit}>提交</Button>
-        </Card>
+        { role ? (
+          <Card title="员工角色管理" bordered={false}>
+            <CheckboxGroup options={role.roles} defaultValue={role.currentRoles} onChange={onChange} />
+            <br /><br />
+            <Button type="primary" onClick={handleSubmit}>提交</Button>
+          </Card>
+          ) : <div>loading</div> }
+
       </div>
     );
   }

@@ -53,3 +53,15 @@ export async function getRolesViaStuff(params) {
   return request(`/admin/auth/get-roles-via-stuff?${stringify(params)}`);
 }
 
+export async function postRolesViaStuff(params) {
+  return request(`/admin/auth/post-roles-via-stuffs`,
+    {
+      method: 'POST',
+      body: {
+        ...params,
+        method: 'post',
+      },
+    }
+  );
+}
+

@@ -113,4 +113,8 @@ export default {
       name: 'coder',
     },],
   },
+  'POST /admin/auth/post-roles-via-stuff': {
+    code: 20000,
+    data: [],
+  },
 };
