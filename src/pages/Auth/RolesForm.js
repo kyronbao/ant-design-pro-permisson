@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
 import isEqual from 'lodash/isEqual';
 import { connect } from 'dva';
+import router from 'umi/router';
 import styles from './style.less';
 
 @connect(({ role }) => ({
@@ -81,6 +82,13 @@ class RolesForm extends PureComponent {
     this.setState({ data: newData });
     onChange(newData);
   }
+
+  editPermissions = (id) => {
+    router.replace({
+      pathname: 'role-permissions',
+      params: {"id": id},
+    })
+  };
 
   handleKeyPress(e, id) {
     if (e.id === 'Enter') {
@@ -197,6 +205,8 @@ class RolesForm extends PureComponent {
           return (
             <span>
               <a onClick={e => this.toggleEditable(e, record.id)}>编辑</a>
+              <Divider type="vertical" />
+              <a onClick={e => this.editPermissions(record.id)}>权限管理</a>
               <Divider type="vertical" />
               <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.id)}>
                 <a>删除</a>

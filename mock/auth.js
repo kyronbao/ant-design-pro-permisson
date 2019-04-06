@@ -98,6 +98,20 @@ export default {
     code: 20000,
     data: permissionsPlus
   },
+  'GET /admin/auth/get-permissions-via-role': {
+    code: 20000,
+    data: [{
+      id: '2',
+      name: 'get permissions',
+      path: 'admin/auth/get-permissions',
+      name_cn: '获取权限',
+      guard: 'admin',
+    }],
+  },
+  'POST /admin/auth/post-permissions-via-role': {
+    code: 20000,
+    data: permissionsPlus
+  },
   '/admin/auth/get-menus': {
     code: 20000,
     data: menus,

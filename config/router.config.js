@@ -182,6 +182,11 @@ export default [
             name: 'stuffs',
             component: './Auth/StuffRoles',
           },
+          {
+            path: 'admin/auth/role-permissions',
+            name: 'stuffs',
+            component: './Auth/RolePermissions',
+          },
         ],
       },
       {
