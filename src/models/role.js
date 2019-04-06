@@ -6,7 +6,9 @@ export default {
   namespace: 'role',
 
   state: {
-    role: {},
+    roles: [],
+    rolesValues: [],
+    currentRolesValues: [],
   },
 
   effects: {
@@ -15,7 +17,7 @@ export default {
       const response = yield call(queryRoles);
       yield put({
         type: 'saveRoles',
-        payload: response.data,
+        payload: response.code === ok ? response.data : []
       });
     },
 
@@ -38,18 +40,18 @@ export default {
       if (response1.code !== ok) {
         message.error('加载失败')
       }
-      const roles = [];
+      const rolesValues = [];
       response1.data.forEach((item) => (
-        roles.push({label:item.name, value:item.name})
+        rolesValues.push({label:item.name, value:item.name})
       ));
-      const currentRoles = [];
+      const currentRolesValues = [];
       response2.data.forEach((item) => (
-        currentRoles.push(item.name)
+        currentRolesValues.push(item.name)
       ));
 
       yield put({
-        type: 'saveRoles',
-        payload: {roles: roles, currentRoles: currentRoles},
+        type: 'saveRolesViaStuff',
+        payload: {rolesValues: rolesValues, currentRolesValues: currentRolesValues},
       });
     },
 
@@ -59,7 +61,7 @@ export default {
         message.error('提交失败')
       }
       yield put({
-        type: 'saveRoles',
+        type: 'saveRolesViaStuff',
         payload: response.data,
       });
     },
@@ -69,7 +71,14 @@ export default {
     saveRoles(state, action) {
       return {
         ...state,
-        role: action.payload || {},
+        roles: action.payload,
+      };
+    },
+    saveRolesViaStuff(state, action) {
+      return {
+        ...state,
+        rolesValues: action.payload.rolesValues,
+        currentRolesValues: action.payload.currentRolesValues,
       };
     },
   },

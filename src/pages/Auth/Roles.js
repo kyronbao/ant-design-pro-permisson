@@ -20,26 +20,17 @@ class Roles extends PureComponent {
 
   render() {
     const {
-      role: { role },
+      role: { roles },
       form: { getFieldDecorator },
     } = this.props;
-
-    console.log(role);
-
+    console.log(this.props)
 
     return (
-      <div>
-        {
-          ! role.roles ? (
-            <Card title="角色管理" bordered={false}>
-              {getFieldDecorator('members', {
-                initialValue: role,
-              })(<RolesForm />)}
-            </Card>
-          ) : <div>loading</div>
-        }
-
-      </div>
+      <Card title="角色管理" bordered={false}>
+        {getFieldDecorator('members', {
+          initialValue: roles,
+        })(<RolesForm />)}
+      </Card>
     );
   }
 }

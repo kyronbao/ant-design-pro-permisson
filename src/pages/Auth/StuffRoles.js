@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Form, Checkbox, Button, message } from 'antd';
+import { Card, Checkbox, Button, message } from 'antd';
 
 /* eslint react/no-multi-comp:0 */
 @connect(({ role }) => ({
-  role
+  role,
 }))
-@Form.create()
 class StuffRoles extends PureComponent {
 
   componentDidMount() {
@@ -21,23 +20,24 @@ class StuffRoles extends PureComponent {
 
   render() {
     const {
-      role: { role },
+      role: { rolesValues },
+      role: { currentRolesValues },
       location,
       dispatch,
     } = this.props;
-    console.log(role)
+    console.log(this.props)
 
-    let currentRoles = [];
+    let selectedRoles = [];
 
     const CheckboxGroup = Checkbox.Group;
 
     function onChange(checkedValues) {
       console.log('checked = ', checkedValues);
-      currentRoles = checkedValues;
+      selectedRoles = checkedValues;
     }
 
     function handleSubmit() {
-      console.log(currentRoles)
+      console.log(selectedRoles)
       if(! location.params) {
         message.error('请从员工页面点击角色管理');
         return;
@@ -46,24 +46,18 @@ class StuffRoles extends PureComponent {
         type: 'role/postViaStuff',
         payload: {
           id: location.params.id,
-          current_roles: currentRoles,
+          current_roles: selectedRoles,
         },
       });
 
     }
 
     return (
-
-      <div>
-        { role.roles ? (
-          <Card title="员工角色管理" bordered={false}>
-            <CheckboxGroup options={role.roles} defaultValue={role.currentRoles} onChange={onChange} />
-            <br /><br />
-            <Button type="primary" onClick={handleSubmit}>提交</Button>
-          </Card>
-          ) : <div>loading</div> }
-
-      </div>
+      <Card title="员工角色管理" bordered={false}>
+        <CheckboxGroup options={rolesValues} defaultValue={currentRolesValues} onChange={onChange} />
+        <br /><br />
+        <Button type="primary" onClick={handleSubmit}>提交</Button>
+      </Card>
     );
   }
 }
