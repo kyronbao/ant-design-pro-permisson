@@ -25,6 +25,7 @@ class StuffRoles extends PureComponent {
       location,
       dispatch,
     } = this.props;
+    console.log(role)
 
     let currentRoles = [];
 
@@ -54,7 +55,7 @@ class StuffRoles extends PureComponent {
     return (
 
       <div>
-        { role ? (
+        { role.roles ? (
           <Card title="员工角色管理" bordered={false}>
             <CheckboxGroup options={role.roles} defaultValue={role.currentRoles} onChange={onChange} />
             <br /><br />

@@ -6,8 +6,7 @@ export default {
   namespace: 'role',
 
   state: {
-    list: [],
-    roles: {},
+    role: {},
   },
 
   effects: {

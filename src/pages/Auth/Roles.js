@@ -5,8 +5,7 @@ import RolesForm from './RolesForm';
 
 
 /* eslint react/no-multi-comp:0 */
-@connect(({loading, role }) => ({
-  loading: loading.models.rule,
+@connect(({ role }) => ({
   role
 }))
 @Form.create()
@@ -21,17 +20,25 @@ class Roles extends PureComponent {
 
   render() {
     const {
-      role: {role},
+      role: { role },
       form: { getFieldDecorator },
     } = this.props;
 
+    console.log(role);
+
+
     return (
       <div>
-        <Card title="角色管理" bordered={false}>
-          {getFieldDecorator('members', {
-            initialValue: role,
-          })(<RolesForm />)}
-        </Card>
+        {
+          ! role.roles ? (
+            <Card title="角色管理" bordered={false}>
+              {getFieldDecorator('members', {
+                initialValue: role,
+              })(<RolesForm />)}
+            </Card>
+          ) : <div>loading</div>
+        }
+
       </div>
     );
   }
