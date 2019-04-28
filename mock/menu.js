@@ -1,5 +1,5 @@
 export default {
-  '/api/menu': [{
+  '/admin/auth/menu': [{
     "path": "/dashboard",
     "name": "Dashboard",
     "icon": "dashboard",
