@@ -21,7 +21,7 @@ const stuffsPlus = stuffs.concat({
 })
 export default {
   // 支持值为 Object 和 Array
-  'GET /admin/stuff': {
+  'GET /admin/auth/stuff': {
     "data":{
       "username":"bbbb"
     }

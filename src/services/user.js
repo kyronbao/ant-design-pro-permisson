@@ -5,5 +5,5 @@ export async function query() {
 }
 
 export async function queryCurrent() {
-  return request('/admin/stuff');
+  return request('/admin/auth/stuff');
 }
