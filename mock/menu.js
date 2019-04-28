@@ -1,5 +1,55 @@
 export default {
-  '/admin/auth/menu': [{
+  '/admin/auth/menu': {
+    "code": 20000,
+    "msg": "ok",
+    "data": [
+      {
+        "id": 1,
+        "name": "auth management",
+        "name_cn": "授权管理",
+        "path": "/",
+        "icon": null,
+        "locale": "menu.auth",
+        "parent": 0,
+        "children": [
+          {
+            "id": 2,
+            "name": "stuffs management",
+            "name_cn": "员工管理",
+            "path": "admin/auth/stuffs",
+            "icon": null,
+            "locale": "menu.auth.stuffs",
+            "parent": 1
+          },
+          {
+            "id": 3,
+            "name": "roles management",
+            "name_cn": "角色管理",
+            "path": "admin/auth/roles",
+            "icon": null,
+            "parent": 1
+          },
+          {
+            "id": 4,
+            "name": "permissions management",
+            "name_cn": "权限管理",
+            "path": "admin/auth/permissions",
+            "icon": null,
+            "parent": 1
+          },
+          {
+            "id": 5,
+            "name": "menus management",
+            "name_cn": "菜单管理",
+            "path": "admin/auth/menus",
+            "icon": null,
+            "parent": 1
+          }
+        ]
+      }
+    ]
+  },
+  '/admin/auth/menu-bak': [{
     "path": "/dashboard",
     "name": "Dashboard",
     "icon": "dashboard",

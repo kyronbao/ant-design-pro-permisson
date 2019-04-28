@@ -38,7 +38,7 @@ export default class BaseMenu extends PureComponent {
       return [];
     }
     return menusData
-      .filter(item => item.name && !item.hideInMenu)
+      .filter(item => item.name_cn && !item.hideInMenu)
       .map(item => this.getSubMenuOrItem(item))
       .filter(item => item);
   };
@@ -54,18 +54,18 @@ export default class BaseMenu extends PureComponent {
    */
   getSubMenuOrItem = item => {
     // doc: add hideChildrenInMenu
-    if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name)) {
-      const { name } = item;
+    if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name_cn)) {
+      const { name_cn } = item;
       return (
         <SubMenu
           title={
             item.icon ? (
               <span>
                 {getIcon(item.icon)}
-                <span>{name}</span>
+                <span>{name_cn}</span>
               </span>
             ) : (
-              name
+              name_cn
             )
           }
           key={item.path}
@@ -83,7 +83,7 @@ export default class BaseMenu extends PureComponent {
    * @memberof SiderMenu
    */
   getMenuItemPath = item => {
-    const { name } = item;
+    const { name_cn } = item;
     const itemPath = this.conversionPath(item.path);
     const icon = getIcon(item.icon);
     const { target } = item;
@@ -92,7 +92,7 @@ export default class BaseMenu extends PureComponent {
       return (
         <a href={itemPath} target={target}>
           {icon}
-          <span>{name}</span>
+          <span>{name_cn}</span>
         </a>
       );
     }
@@ -111,7 +111,7 @@ export default class BaseMenu extends PureComponent {
         }
       >
         {icon}
-        <span>{name}</span>
+        <span>{name_cn}</span>
       </Link>
     );
   };
