@@ -37,7 +37,7 @@ export default {
             "id": 2,
             "name": "stuffs management",
             "name_cn": "员工管理",
-            "path": "admin/auth/stuffs",
+            "path": "auth/stuffs",
             "icon": null,
             "parent": 1
           },
@@ -45,7 +45,7 @@ export default {
             "id": 3,
             "name": "roles management",
             "name_cn": "角色管理",
-            "path": "admin/auth/roles",
+            "path": "auth/roles",
             "icon": null,
             "parent": 1
           },
@@ -53,7 +53,7 @@ export default {
             "id": 4,
             "name": "permissions management",
             "name_cn": "权限管理",
-            "path": "admin/auth/permissions",
+            "path": "auth/permissions",
             "icon": null,
             "parent": 1
           },
@@ -61,7 +61,7 @@ export default {
             "id": 5,
             "name": "menus management",
             "name_cn": "菜单管理",
-            "path": "admin/auth/menus",
+            "path": "auth/menus",
             "icon": null,
             "parent": 1
           }

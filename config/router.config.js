@@ -158,32 +158,32 @@ export default [
         name: 'auth',
         routes: [
           {
-            path: 'admin/auth/roles',
+            path: 'auth/roles',
             name: 'roles',
             component: './Auth/Roles',
           },
           {
-            path: 'admin/auth/permissions',
+            path: 'auth/permissions',
             name: 'permissions',
             component: './Auth/Permissions',
           },
           {
-            path: 'admin/auth/menus',
+            path: 'auth/menus',
             name: 'menus',
             component: './Auth/Menus',
           },
           {
-            path: 'admin/auth/stuffs',
+            path: 'auth/stuffs',
             name: 'stuffs',
             component: './Auth/Stuffs',
           },
           {
-            path: 'admin/auth/stuff-roles',
+            path: 'auth/stuff-roles',
             name: 'stuffs',
             component: './Auth/StuffRoles',
           },
           {
-            path: 'admin/auth/role-permissions',
+            path: 'auth/role-permissions',
             name: 'stuffs',
             component: './Auth/RolePermissions',
           },
