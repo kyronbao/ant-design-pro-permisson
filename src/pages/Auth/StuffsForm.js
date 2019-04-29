@@ -34,48 +34,6 @@ class StuffsForm extends PureComponent {
     };
   }
 
-  getRowByKey(id, newData) {
-    const { data } = this.state;
-    return (newData || data).filter(item => item.id === id)[0];
-  }
-
-  toggleEditable = (e, id) => {
-    e.preventDefault();
-    const { data } = this.state;
-    const newData = data.map(item => ({ ...item }));
-    const target = this.getRowByKey(id, newData);
-    if (target) {
-      // 进入编辑状态时保存原始数据
-      if (!target.editable) {
-        this.cacheOriginData[id] = { ...target };
-      }
-      target.editable = !target.editable;
-      this.setState({ data: newData });
-    }
-  };
-
-  newMember = () => {
-    const { data } = this.state;
-    const newData = data.map(item => ({ ...item }));
-    newData.push({
-      id: `NEW_${this.index}`,
-      username: '',
-      email: '',
-      editable: true,
-    });
-    this.index += 1;
-    this.setState({ data: newData });
-  };
-
-  submitData = () => {
-    const { data } = this.state;
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'stuff/post',
-      payload: { "stuffs": data },
-    });
-  };
-
   editRoles = (id) => {
     router.replace({
       pathname: 'stuff-roles',
@@ -91,67 +49,6 @@ class StuffsForm extends PureComponent {
     onChange(newData);
   }
 
-  handleKeyPress(e, id) {
-    if (e.id === 'Enter') {
-      this.saveRow(e, id);
-    }
-  }
-
-  handleFieldChange(e, fieldName, id) {
-    const { data } = this.state;
-    const newData = data.map(item => ({ ...item }));
-    const target = this.getRowByKey(id, newData);
-    if (target) {
-      target[fieldName] = e.target.value;
-      this.setState({ data: newData });
-    }
-  }
-
-  saveRow(e, id) {
-    e.persist();
-    this.setState({
-      loading: true,
-    });
-    setTimeout(() => {
-      if (this.clickedCancel) {
-        this.clickedCancel = false;
-        return;
-      }
-      const target = this.getRowByKey(id) || {};
-      if (!target.username || !target.email) {
-        message.error('请填写完整信息。');
-        e.target.focus();
-        this.setState({
-          loading: false,
-        });
-        return;
-      }
-      delete target.isNew;
-      this.toggleEditable(e, id);
-      const { data } = this.state;
-      const { onChange } = this.props;
-      onChange(data);
-      this.setState({
-        loading: false,
-      });
-    }, 500);
-  }
-
-  cancel(e, id) {
-    this.clickedCancel = true;
-    e.preventDefault();
-    const { data } = this.state;
-    const newData = data.map(item => ({ ...item }));
-    const target = this.getRowByKey(id, newData);
-    if (this.cacheOriginData[id]) {
-      Object.assign(target, this.cacheOriginData[id]);
-      delete this.cacheOriginData[id];
-    }
-    target.editable = false;
-    this.setState({ data: newData });
-    this.clickedCancel = false;
-  }
-
   render() {
     const columns = [
       {
@@ -164,8 +61,6 @@ class StuffsForm extends PureComponent {
               <Input
                 value={text}
                 autoFocus
-                onChange={e => this.handleFieldChange(e, 'username', record.id)}
-                onKeyPress={e => this.handleKeyPress(e, record.id)}
                 placeholder="用户名"
               />
             );
@@ -183,8 +78,6 @@ class StuffsForm extends PureComponent {
               <Input
                 value={text}
                 autoFocus
-                onChange={e => this.handleFieldChange(e, 'email', record.id)}
-                onKeyPress={e => this.handleKeyPress(e, record.id)}
                 placeholder="邮箱"
               />
             );
@@ -201,35 +94,14 @@ class StuffsForm extends PureComponent {
           if (!!record.editable && loading) {
             return null;
           }
-          if (record.editable) {
-            if (record.isNew) {
-              return (
-                <span>
-                  <a onClick={e => this.saveRow(e, record.id)}>添加</a>
-                  <Divider type="vertical" />
-                  <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.id)}>
-                    <a>删除</a>
-                  </Popconfirm>
-                </span>
-              );
-            }
-            return (
-              <span>
-                <a onClick={e => this.saveRow(e, record.id)}>保存</a>
-                <Divider type="vertical" />
-                <a onClick={e => this.cancel(e, record.id)}>取消</a>
-              </span>
-            );
-          }
+
           return (
             <span>
-              <a onClick={e => this.toggleEditable(e, record.id)}>编辑</a>
-              <Divider type="vertical" />
               <a onClick={e => this.editRoles(record.id)}>角色管理</a>
               <Divider type="vertical" />
-              <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.id)}>
-                <a>删除</a>
-              </Popconfirm>
+              {/*<Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.id)}>*/}
+                {/*<a>删除</a>*/}
+              {/*</Popconfirm>*/}
             </span>
           );
         },
@@ -248,20 +120,7 @@ class StuffsForm extends PureComponent {
           pagination={false}
           rowClassName={record => (record.editable ? styles.editable : '')}
         />
-        <Button
-          style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
-          type="dashed"
-          onClick={this.newMember}
-          icon="plus"
-        >
-          新增
-        </Button>
-        <Button
-          type="primary"
-          onClick={this.submitData}
-        >
-          提交
-        </Button>
+
       </Fragment>
     );
   }

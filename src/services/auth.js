@@ -33,8 +33,8 @@ export async function postPermissions(params) {
   );
 }
 
-export async function getPermissionsViaRole() {
-  return request(`/admin/auth/get-permissions-via-role`);
+export async function getPermissionsViaRole(params) {
+  return request(`/admin/auth/get-permissions-via-role?${stringify(params)}`);
 }
 
 export async function postPermissionsViaRole(params) {
@@ -70,7 +70,7 @@ export async function getRolesViaStuff(params) {
 }
 
 export async function postRolesViaStuff(params) {
-  return request(`/admin/auth/post-roles-via-stuffs`,
+  return request(`/admin/auth/post-roles-via-stuff`,
     {
       method: 'POST',
       body: {
