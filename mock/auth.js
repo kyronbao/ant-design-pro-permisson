@@ -131,4 +131,22 @@ export default {
     code: 20000,
     data: [],
   },
+  'POST /admin/auth/login': (req, res) => {
+    const { password, username } = req.body;
+    if (password === '12345678' && username === 'admin') {
+      res.send({
+        code: 20000,
+      });
+      return;
+    }
+
+    res.send({
+      code: 11401,
+    });
+  },
+  'POST /admin/auth/logout': (req, res) => {
+    res.send({
+      code: 20000,
+    });
+  },
 };

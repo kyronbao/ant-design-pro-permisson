@@ -81,3 +81,26 @@ export async function postRolesViaStuff(params) {
   );
 }
 
+export async function postLogin(params) {
+  return request(`/admin/auth/login`,
+    {
+      method: 'POST',
+      body: {
+        ...params,
+        method: 'post',
+      },
+    }
+  );
+}
+
+export async function postLogout(params) {
+  return request(`/admin/auth/logout`,
+    {
+      method: 'POST',
+      body: {
+        ...params,
+        method: 'post',
+      },
+    }
+  );
+}

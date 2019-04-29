@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'qs';
-import { fakeAccountLogin, getFakeCaptcha } from '@/services/api';
+// import { fakeAccountLogin, getFakeCaptcha } from '@/services/api';
+import { postLogin, postLogout } from '@/services/auth';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
@@ -14,13 +15,13 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(postLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.code === 20000) {
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -38,6 +39,8 @@ export default {
           }
         }
         yield put(routerRedux.replace(redirect || '/'));
+
+        window.location.reload(); // 刷新页面
       }
     },
 
@@ -45,7 +48,12 @@ export default {
       yield call(getFakeCaptcha, payload);
     },
 
-    *logout(_, { put }) {
+    *logout(payload, { call, put }) {
+      var d = new Date;
+      d.setTime(d.getTime() - 60);
+      document.cookie = "admin_token=0;path=/;expires=" + d.toGMTString();
+      yield call(postLogout, payload);
+
       yield put({
         type: 'changeLoginStatus',
         payload: {
@@ -67,7 +75,8 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      // setAuthority(payload.currentAuthority);
+      setAuthority('admin'); // 角色固定设置成admin
       return {
         ...state,
         status: payload.status,
