@@ -61,7 +61,7 @@ class PermissionsForm extends PureComponent {
       name: '',
       name_cn: '',
       path: '',
-      guard: '',
+      guard_name: 'admin',
       editable: true,
     });
     this.index += 1;
@@ -73,7 +73,7 @@ class PermissionsForm extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'permission/post',
-      payload: { "permissions": data },
+      payload: { "data": data },
     });
   };
 
@@ -112,7 +112,7 @@ class PermissionsForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(id) || {};
-      if (!target.name || !target.name_cn || !target.path || !target.guard) {
+      if (!target.name || !target.name_cn || !target.path || !target.guard_name) {
         message.error('请填写完整信息。');
         e.target.focus();
         this.setState({
@@ -207,7 +207,7 @@ class PermissionsForm extends PureComponent {
       },
       {
         title: '类型',
-        dataIndex: 'guard',
+        dataIndex: 'guard_name',
         width: '10%',
         render: (text, record) => {
           if (record.editable) {
@@ -215,7 +215,7 @@ class PermissionsForm extends PureComponent {
               <Input
                 value={text}
                 autoFocus
-                onChange={e => this.handleFieldChange(e, 'guard', record.id)}
+                onChange={e => this.handleFieldChange(e, 'guard_name', record.id)}
                 onKeyPress={e => this.handleKeyPress(e, record.id)}
                 placeholder="类型"
               />

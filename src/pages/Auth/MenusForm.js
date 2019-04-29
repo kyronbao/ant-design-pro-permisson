@@ -64,7 +64,6 @@ class MenusForm extends PureComponent {
       icon: "",
       parent: 0,
       sort: 0,
-      guard: '',
       editable: true,
     });
     this.index += 1;
@@ -76,7 +75,7 @@ class MenusForm extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'menu/post',
-      payload: { "menus": data },
+      payload: { "data": data },
     });
   };
 
@@ -115,7 +114,7 @@ class MenusForm extends PureComponent {
         return;
       }
       const target = this.getRowByKey(id) || {};
-      if (!target.name || !target.name_cn || !target.path || !target.guard) {
+      if (!target.name || !target.name_cn || !target.path ) {
         message.error('请填写完整信息。');
         e.target.focus();
         this.setState({
@@ -239,7 +238,7 @@ class MenusForm extends PureComponent {
                 autoFocus
                 onChange={e => this.handleFieldChange(e, 'icon', record.id)}
                 onKeyPress={e => this.handleKeyPress(e, record.id)}
-                placeholder="菜单"
+                placeholder="图标"
               />
             );
           }
@@ -278,25 +277,6 @@ class MenusForm extends PureComponent {
                 onChange={e => this.handleFieldChange(e, 'sort', record.id)}
                 onKeyPress={e => this.handleKeyPress(e, record.id)}
                 placeholder="排序"
-              />
-            );
-          }
-          return text;
-        },
-      },
-      {
-        title: '类型',
-        dataIndex: 'guard',
-        width: '5%',
-        render: (text, record) => {
-          if (record.editable) {
-            return (
-              <Input
-                value={text}
-                autoFocus
-                onChange={e => this.handleFieldChange(e, 'guard', record.id)}
-                onKeyPress={e => this.handleKeyPress(e, record.id)}
-                placeholder="类型"
               />
             );
           }

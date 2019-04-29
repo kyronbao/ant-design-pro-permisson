@@ -60,6 +60,7 @@ class RolesForm extends PureComponent {
     newData.push({
       id: `NEW_${this.index}`,
       name: '',
+      guard_name: 'admin',
       editable: true,
     });
     this.index += 1;
@@ -71,7 +72,7 @@ class RolesForm extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'role/post',
-      payload: { "roles": data },
+      payload: { "data": data },
     });
   };
 
