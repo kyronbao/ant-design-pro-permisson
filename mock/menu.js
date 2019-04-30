@@ -30,7 +30,7 @@ export default {
         "name": "auth management",
         "name_cn": "授权管理",
         "path": "/",
-        "icon": null,
+        "icon": "user",
         "parent": 0,
         "children": [
           {

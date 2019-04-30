@@ -264,25 +264,6 @@ class MenusForm extends PureComponent {
           return text;
         },
       },
-      {
-        title: '排序',
-        dataIndex: 'sort',
-        width: '8%',
-        render: (text, record) => {
-          if (record.editable) {
-            return (
-              <Input
-                value={text}
-                autoFocus
-                onChange={e => this.handleFieldChange(e, 'sort', record.id)}
-                onKeyPress={e => this.handleKeyPress(e, record.id)}
-                placeholder="排序"
-              />
-            );
-          }
-          return text;
-        },
-      },
 
       {
         title: '操作',
