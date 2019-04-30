@@ -59,6 +59,10 @@ if (APP_TYPE === 'site') {
 }
 
 export default {
+  // umi配置文件后带hash,解决发布后缓存问题
+  hash: true,
+  // 修改发布文件默认路径.dist
+  outputPath: '../html-antadmin/dist',
   // add for transfer to umi
   plugins,
   define: {
@@ -82,6 +86,11 @@ export default {
   //     pathRewrite: { '^/server': '' },
   //   },
   // },
+  proxy: {
+    '/admin': {
+      target: 'http://localhost:8080/',
+    },
+  },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
     javascriptEnabled: true,
