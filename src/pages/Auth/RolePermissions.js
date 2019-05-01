@@ -3,8 +3,9 @@ import { connect } from 'dva';
 import { Card, Checkbox, Button, message } from 'antd';
 
 /* eslint react/no-multi-comp:0 */
-@connect(({ permission }) => ({
+@connect(({ permission, loading }) => ({
   permission,
+  loading: loading.models.permission,
 }))
 class RolePermissions extends PureComponent {
 
@@ -22,6 +23,7 @@ class RolePermissions extends PureComponent {
     const {
       permission: { permissionsValues },
       permission: { currentPermissionsValues },
+      loading,
       location,
       dispatch,
     } = this.props;
@@ -51,11 +53,17 @@ class RolePermissions extends PureComponent {
     }
 
     return (
-      <Card title="角色权限管理" bordered={false}>
-        <CheckboxGroup options={permissionsValues} defaultValue={currentPermissionsValues} onChange={onChange} />
-        <br /><br />
-        <Button type="primary" onClick={handleSubmit}>提交</Button>
-      </Card>
+      <div>
+        {
+          loading ? <div>loading</div> : (
+            <Card title="角色权限管理" bordered={false}>
+              <CheckboxGroup options={permissionsValues} defaultValue={currentPermissionsValues} onChange={onChange} />
+              <br /><br />
+              <Button type="primary" onClick={handleSubmit}>提交</Button>
+            </Card>
+          )
+        }
+      </div>
     );
   }
 }

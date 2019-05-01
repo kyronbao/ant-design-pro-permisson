@@ -3,8 +3,9 @@ import { connect } from 'dva';
 import { Card, Checkbox, Button, message } from 'antd';
 
 /* eslint react/no-multi-comp:0 */
-@connect(({ role }) => ({
+@connect(({ role, loading }) => ({
   role,
+  loading: loading.models.role,
 }))
 class StuffRoles extends PureComponent {
 
@@ -22,6 +23,7 @@ class StuffRoles extends PureComponent {
     const {
       role: { rolesValues },
       role: { currentRolesValues },
+      loading,
       location,
       dispatch,
     } = this.props;
@@ -53,11 +55,18 @@ class StuffRoles extends PureComponent {
     }
 
     return (
-      <Card title="员工角色管理" bordered={false}>
-        <CheckboxGroup options={rolesValues} defaultValue={currentRolesValues} onChange={onChange} />
-        <br /><br />
-        <Button type="primary" onClick={handleSubmit}>提交</Button>
-      </Card>
+      <div>
+        {
+          loading ? <div>loading</div> : (
+            <Card title="员工角色管理" bordered={false}>
+              <CheckboxGroup options={rolesValues} defaultValue={currentRolesValues} onChange={onChange} />
+              <br /><br />
+              <Button type="primary" onClick={handleSubmit}>提交</Button>
+            </Card>
+          )
+        }
+      </div>
+
     );
   }
 }
