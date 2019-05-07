@@ -27,7 +27,7 @@ export default {
         message.success('提交成功')
       }
       yield put({
-        type: 'saveRoles',
+        type: 'fetch',
         payload: response.data,
       });
     },

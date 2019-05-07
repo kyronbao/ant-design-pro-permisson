@@ -33,7 +33,7 @@ export default {
         message.success('提交成功')
       }
       yield put({
-        type: 'savePermissions',
+        type: 'fetch',
         payload: response.data,
       });
     },
