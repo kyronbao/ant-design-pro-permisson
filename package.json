@@ -1,7 +1,7 @@
 {
-  "name": "ant-design-pro",
-  "version": "2.2.1",
-  "description": "An out-of-box UI solution for enterprise applications",
+  "name": "ant-design-pro-permission",
+  "version": "0.3.0",
+  "description": "Add RBAC permission for ant-design-pro",
   "private": true,
   "scripts": {
     "presite": "cd functions && npm install",
