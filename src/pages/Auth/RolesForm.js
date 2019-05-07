@@ -155,7 +155,7 @@ class RolesForm extends PureComponent {
   render() {
     const columns = [
       {
-        title: '角色名',
+        title: '角色',
         dataIndex: 'name',
         id: 'name',
         width: '20%',
@@ -166,6 +166,27 @@ class RolesForm extends PureComponent {
                 value={text}
                 autoFocus
                 onChange={e => this.handleFieldChange(e, 'name', record.id)}
+                onKeyPress={e => this.handleKeyPress(e, record.id)}
+                placeholder="角色名"
+              />
+            );
+          }
+          return text;
+        },
+      },
+
+      {
+        title: '角色名',
+        dataIndex: 'name_cn',
+        id: 'name_cn',
+        width: '20%',
+        render: (text, record) => {
+          if (record.editable) {
+            return (
+              <Input
+                value={text}
+                autoFocus
+                onChange={e => this.handleFieldChange(e, 'name_cn', record.id)}
                 onKeyPress={e => this.handleKeyPress(e, record.id)}
                 placeholder="角色名"
               />

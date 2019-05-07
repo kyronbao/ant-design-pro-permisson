@@ -2,20 +2,24 @@ const roles = [
   {
     id: '1',
     name: 'projector',
+    name_cn: '项目经理',
   },
   {
     id: '2',
     name: 'coder',
+    name_cn: '码农',
   },
   {
     id: '3',
     name: 'designer',
+    name_cn: '设计师',
   },
 ];
 
 const rolesPlus = roles.concat({
   id: '4',
   name: 'guest',
+  name_cn: '游客',
 })
 
 const permissions = [
@@ -24,14 +28,14 @@ const permissions = [
     name: 'get roles',
     path: 'admin/auth/get-roles',
     name_cn: '获取角色',
-    guard: 'admin',
+    guard_name: 'admin',
   },
   {
     id: '2',
     name: 'get permissions',
     path: 'admin/auth/get-permissions',
     name_cn: '获取权限',
-    guard: 'admin',
+    guard_name: 'admin',
   },
 
 ];
@@ -41,7 +45,7 @@ const permissionsPlus = permissions.concat({
   name: 'get stuffs',
   path: 'admin/auth/get-stuffs',
   name_cn: '获取员工',
-  guard: 'admin',
+  guard_name: 'admin',
 })
 
 
@@ -54,7 +58,6 @@ const menus = [
     icon: "table",
     parent: 0,
     sort: 0,
-    guard: 'admin',
   },
   {
     id: '2',
@@ -64,7 +67,6 @@ const menus = [
     parent: 0,
     sort: 0,
     name_cn: '权限管理',
-    guard: 'admin',
   },
 
 ];
@@ -77,7 +79,6 @@ const menusPlus = menus.concat({
   icon: "table",
   parent: 0,
   sort: 0,
-  guard: 'admin',
 })
 
 

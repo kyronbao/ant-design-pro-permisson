@@ -23,8 +23,8 @@ export default {
 
     *post({ payload }, { call, put }) {
       const response = yield call(postRoles, payload);
-      if (response.code !== ok) {
-        message.error('提交失败')
+      if (response.code === ok) {
+        message.success('提交成功')
       }
       yield put({
         type: 'saveRoles',
