@@ -129,7 +129,7 @@ export default {
   },
   'POST /admin/auth/post-roles-via-stuff': {
     code: 20000,
-    data: [],
+    data: rolesPlus,
   },
   'POST /admin/auth/login': (req, res) => {
     const { password, username } = req.body;

@@ -57,13 +57,9 @@ export default {
 
     *postViaStuff({ payload }, { call, put }) {
       const response = yield call(postRolesViaStuff, payload);
-      if (response.code !== ok) {
-        message.error('提交失败')
+      if (response.code === ok) {
+        message.success('提交成功')
       }
-      yield put({
-        type: 'saveRolesViaStuff',
-        payload: response.data,
-      });
     },
 },
 
