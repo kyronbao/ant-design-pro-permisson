@@ -1,5 +1,3 @@
-[English](./README.md) | 简体中文 | 
-
 <h1 align="center">Ant Design Pro Permission</h1>
 
 ## 项目说明
