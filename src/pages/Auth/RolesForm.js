@@ -60,6 +60,7 @@ class RolesForm extends PureComponent {
     newData.push({
       id: `NEW_${this.index}`,
       name: '',
+      name_cn: '',
       guard_name: 'admin',
       editable: true,
     });
