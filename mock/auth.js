@@ -111,7 +111,7 @@ export default {
   },
   'POST /admin/auth/post-permissions-via-role': {
     code: 20000,
-    data: permissionsPlus
+    data: [],
   },
   '/admin/auth/get-menus': {
     code: 20000,
@@ -130,7 +130,7 @@ export default {
   },
   'POST /admin/auth/post-roles-via-stuff': {
     code: 20000,
-    data: rolesPlus,
+    data: [],
   },
   'POST /admin/auth/login': (req, res) => {
     const { password, username } = req.body;

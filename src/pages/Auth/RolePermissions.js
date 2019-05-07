@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Card, Checkbox, Button, message } from 'antd';
+import router from 'umi/router';
 
 /* eslint react/no-multi-comp:0 */
 @connect(({ permission, loading }) => ({
@@ -49,6 +50,10 @@ class RolePermissions extends PureComponent {
           current_permissions: selectedPermissions,
         },
       });
+
+      router.replace({
+        pathname: 'roles',
+      })
 
     }
 

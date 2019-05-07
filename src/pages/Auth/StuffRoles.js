@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Card, Checkbox, Button, message } from 'antd';
+import router from 'umi/router';
 
 /* eslint react/no-multi-comp:0 */
 @connect(({ role, loading }) => ({
@@ -51,6 +52,10 @@ class StuffRoles extends PureComponent {
           current_roles: selectedRoles,
         },
       });
+
+      router.replace({
+        pathname: 'stuffs',
+      })
 
     }
 
