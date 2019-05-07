@@ -23,7 +23,7 @@ export default {
   // 支持值为 Object 和 Array
   'GET /admin/auth/stuff': {
     "data":{
-      "username":"bbbb"
+      "username":"admin"
     }
   },
   'GET /admin/auth/get-stuffs': {
