@@ -209,7 +209,7 @@ export default [
           {
             path: '/profile/advanced',
             name: 'advanced',
-            authority: ['admin'],
+            // authority: ['admin'],
             component: './Profile/AdvancedProfile',
           },
         ],

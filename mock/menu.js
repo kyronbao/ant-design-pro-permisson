@@ -166,6 +166,11 @@ export default {
           "name_cn": "基础详情页",
           "exact": true,
           "locale": "menu.profile.basic"
+        }, {
+          "path": "/profile/advanced",
+          "name_cn": "高级详情页",
+          "exact": true,
+          "locale": "menu.profile.advanced"
         }]
       }, {
         "name_cn": "结果页",
