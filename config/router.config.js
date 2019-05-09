@@ -153,37 +153,37 @@ export default [
         ],
       },
       {
-        path: '/',
+        path: '/auth',
         icon: 'table',
         name: 'auth',
         routes: [
           {
-            path: 'auth/roles',
+            path: '/auth/roles',
             name: 'roles',
             component: './Auth/Roles',
           },
           {
-            path: 'auth/permissions',
+            path: '/auth/permissions',
             name: 'permissions',
             component: './Auth/Permissions',
           },
           {
-            path: 'auth/menus',
+            path: '/auth/menus',
             name: 'menus',
             component: './Auth/Menus',
           },
           {
-            path: 'auth/stuffs',
+            path: '/auth/stuffs',
             name: 'stuffs',
             component: './Auth/Stuffs',
           },
           {
-            path: 'auth/stuff-roles',
+            path: '/auth/stuff-roles',
             name: 'stuffs',
             component: './Auth/StuffRoles',
           },
           {
-            path: 'auth/role-permissions',
+            path: '/auth/role-permissions',
             name: 'stuffs',
             component: './Auth/RolePermissions',
           },
