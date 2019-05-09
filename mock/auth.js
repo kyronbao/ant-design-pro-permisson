@@ -52,32 +52,41 @@ const permissionsPlus = permissions.concat({
 const menus = [
   {
     id: '1',
-    name: 'roles management',
-    path: 'admin/auth/roles',
-    name_cn: '角色管理',
-    icon: "table",
+    name: 'auth management',
+    path: '/auth',
+    name_cn: '授权管理',
+    icon: "user",
     parent: 0,
     sort: 0,
   },
   {
     id: '2',
     name: 'menus management',
-    path: 'admin/auth/menus',
-    icon: "table",
-    parent: 0,
+    path: '/auth/menus',
+    icon: "",
+    parent: 1,
     sort: 0,
+    name_cn: '菜单管理',
+  },
+  {
+    id: '3',
+    name: 'permissions management',
+    path: '/auth/others',
     name_cn: '权限管理',
+    icon: "",
+    parent: 1,
+    sort: 0,
   },
 
 ];
 
 const menusPlus = menus.concat({
-  id: '3',
-  name: 'stuffs management',
-  path: 'admin/auth/stuffs',
-  name_cn: '员工管理',
-  icon: "table",
-  parent: 0,
+  id: '4',
+  name: 'roles management',
+  path: '/auth/roles',
+  name_cn: '角色管理',
+  icon: "",
+  parent: 1,
   sort: 0,
 })
 
